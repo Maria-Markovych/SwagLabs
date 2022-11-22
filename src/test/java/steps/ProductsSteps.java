@@ -8,4 +8,12 @@ public class ProductsSteps {
         productsPage.chooseTheSelectedOption(optionText);
         return new ProductsResultSteps();
     }
+    public ProductsResultSteps doAddProduct(String idButtonAddProduct){
+        productsPage.clickButtonAddToCart(idButtonAddProduct);
+        return new ProductsResultSteps();
+    }
+    public ProductsResultSteps doRemoveProduct(String idButtonRemove){
+        productsPage.clickButtonRemove(idButtonRemove);
+        return new ProductsResultSteps();
+    }
 }

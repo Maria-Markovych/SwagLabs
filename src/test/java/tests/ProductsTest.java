@@ -13,16 +13,19 @@ public class ProductsTest extends BaseTest{
         loginSteps.doLogin(USERNAME,"secret_sauce");
     }
 
-    @Test(dataProvider = "dataProviderOptionText")
+    @Test(dataProvider = "dataProviderOptionText",dataProviderClass = StaticDataProvider.class)
     public void testSortingAfterChooseFilter(String selectText,String methodOfSorting){
         productsSteps.doSelectedOption(selectText).verifySelectingProducts(methodOfSorting);
     }
-    @DataProvider(name = "dataProviderOptionText")
-    public static Object[][] createOptionText() {
-        return new Object[][]{
-                {"Name (A to Z)","SortingByName"},
-                {"Name (Z to A)","SortingByNameReverse"},
-                {"Price (low to high)","SortingByPrice"},
-                {"Price (high to low)","SortingByPriceReverse"}};
+
+    @Test(dataProvider = "dataProviderIdButtonAddProduct",dataProviderClass = StaticDataProvider.class)
+    public void testClickButtonAddToCart(String idButtonAdd){
+        productsSteps.doAddProduct(idButtonAdd);
     }
+
+    @Test(dataProvider ="dataProviderIdButtonRemove", dataProviderClass = StaticDataProvider.class)
+    public void testClickButtonRemove(String idButtonRemove){
+        productsSteps.doRemoveProduct(idButtonRemove);
+    }
+
 }

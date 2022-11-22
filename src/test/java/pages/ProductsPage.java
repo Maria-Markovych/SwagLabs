@@ -1,19 +1,15 @@
 package pages;
 
+
 import lombok.SneakyThrows;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.Select;
-
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
-
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.testng.Assert.assertEquals;
-import static org.testng.Assert.assertTrue;
+import static org.testng.Assert.*;
 
 
 public class ProductsPage extends BasePage {
@@ -21,7 +17,8 @@ public class ProductsPage extends BasePage {
     List<WebElement> prices;
     @FindBy(xpath ="//div[@class = 'inventory_item_name']" )
     List<WebElement> productsName;
-
+     @FindBy(xpath="//div[@class='pricebar']/button")
+     List<WebElement> btnAddOrRemoveToCart;
 
 
     public void checkProductsPageUrl(){
@@ -79,5 +76,26 @@ public class ProductsPage extends BasePage {
         Collections.reverse(pricesSortingReverse);
         boolean equals = pricesSortingReverse.equals(turnPricesToDouble());
         assertTrue(equals, "No products sorted by price");
+    }
+    public void clickButtonAddToCart(String idButtonAddProduct){
+        for(WebElement buttonAddProduct: btnAddOrRemoveToCart){
+            if(buttonAddProduct.getAttribute("id").equals(idButtonAddProduct)) {
+                    buttonAddProduct.click();
+                   assertTrue(buttonAddProduct.isDisplayed()) ;
+                  //  assertFalse(buttonAddProduct.getAttribute("id").equals(idButtonAddProduct),
+                   //         "Button is not pressed");
+                    break;
+            }
+        }
+    }
+    public void clickButtonRemove(String idButtonRemove){
+        for(WebElement buttonRemove: btnAddOrRemoveToCart){
+            if(buttonRemove.getAttribute("id").equals(idButtonRemove)) {
+                buttonRemove.click();
+                assertFalse(buttonRemove.getAttribute("id").equals(idButtonRemove),
+                        "Button is not pressed");
+                break;
+            }
+        }
     }
 }
