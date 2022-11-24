@@ -1,6 +1,7 @@
 package tests;
 
 import lombok.SneakyThrows;
+import org.openqa.selenium.StaleElementReferenceException;
 import org.testng.annotations.*;
 
 import static tests.Config.LOGIN_PAGE;
@@ -18,12 +19,14 @@ public class ProductsTest extends BaseTest{
         productsSteps.doSelectedOption(selectText).verifySelectingProducts(methodOfSorting);
     }
 
-    @Test(dataProvider = "dataProviderIdButtonAddProduct",dataProviderClass = StaticDataProvider.class)
+    @Test(dataProvider = "dataProviderIdButtonAddProduct",dataProviderClass = StaticDataProvider.class,
+          expectedExceptions = StaleElementReferenceException.class, priority = 1)
     public void testClickButtonAddToCart(String idButtonAdd){
         productsSteps.doAddProduct(idButtonAdd);
     }
 
-    @Test(dataProvider ="dataProviderIdButtonRemove", dataProviderClass = StaticDataProvider.class)
+    @Test(dataProvider ="dataProviderIdButtonRemove", dataProviderClass = StaticDataProvider.class,
+          expectedExceptions = StaleElementReferenceException.class, priority = 2)
     public void testClickButtonRemove(String idButtonRemove){
         productsSteps.doRemoveProduct(idButtonRemove);
     }

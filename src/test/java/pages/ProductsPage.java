@@ -19,7 +19,8 @@ public class ProductsPage extends BasePage {
     List<WebElement> productsName;
      @FindBy(xpath="//div[@class='pricebar']/button")
      List<WebElement> btnAddOrRemoveToCart;
-
+     @FindBy(className="shopping_cart_badge")
+     WebElement shoppingCartBadge;
 
     public void checkProductsPageUrl(){
         String currentUrl =  driver.getCurrentUrl();
@@ -81,21 +82,28 @@ public class ProductsPage extends BasePage {
         for(WebElement buttonAddProduct: btnAddOrRemoveToCart){
             if(buttonAddProduct.getAttribute("id").equals(idButtonAddProduct)) {
                     buttonAddProduct.click();
-                   assertTrue(buttonAddProduct.isDisplayed()) ;
-                  //  assertFalse(buttonAddProduct.getAttribute("id").equals(idButtonAddProduct),
-                   //         "Button is not pressed");
-                    break;
+                    assertFalse(buttonAddProduct.getAttribute("id").equals(idButtonAddProduct),
+                            "Button 'Add product' is not pressed");
+                   break;
             }
         }
     }
     public void clickButtonRemove(String idButtonRemove){
+        boolean idButtonRemoveExist = false;
         for(WebElement buttonRemove: btnAddOrRemoveToCart){
             if(buttonRemove.getAttribute("id").equals(idButtonRemove)) {
                 buttonRemove.click();
+                idButtonRemoveExist  = true;
                 assertFalse(buttonRemove.getAttribute("id").equals(idButtonRemove),
-                        "Button is not pressed");
-                break;
+                        "Button 'Remove' is not pressed");
             }
         }
+        if(!idButtonRemoveExist)  fail("No button was initially switched to remove");
+    }
+    public void CheckTheAdditionOfProductsToTheBasket(String amountOfProducts){
+         assertEquals(shoppingCartBadge.getText(),amountOfProducts,"Product not added to cart");
+    }
+    public void CheckToRemoveProductsFromBasket(){
+
     }
 }
