@@ -2,7 +2,6 @@ package tests;
 
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-import steps.LoginResultSteps;
 
 import static tests.Config.BASE_PATH;
 

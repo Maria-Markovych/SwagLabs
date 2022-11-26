@@ -24,10 +24,10 @@ public class StaticDataProvider {
     @DataProvider(name = "dataProviderOptionText")
     public static Object[][] createOptionText() {
         return new Object[][]{
-                {"Name (A to Z)", "SortingByName"},
-                {"Name (Z to A)", "SortingByNameReverse"},
-                {"Price (low to high)", "SortingByPrice"},
-                {"Price (high to low)", "SortingByPriceReverse"}};
+                {"Name (A to Z)", "SortingByNameAsc"},
+                {"Name (Z to A)", "SortingByNameDesc"},
+                {"Price (low to high)", "SortingByPriceAsc"},
+                {"Price (high to low)", "SortingByPriceDesc"}};
     }
 
     @DataProvider(name = "dataProviderIdButtonAddToCart")

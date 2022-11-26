@@ -5,16 +5,13 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
-import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeClass;
-import org.testng.annotations.BeforeSuite;
 import steps.LoginSteps;
 import steps.ProductsSteps;
 
 import java.time.Duration;
 
-import static tests.Config.BROWSER;
-import static tests.Config.IMPLICIT_WAIT;
+import static tests.Config.*;
 
 public abstract class BaseTest {
     private static WebDriver driver;
@@ -25,11 +22,11 @@ public abstract class BaseTest {
     public void setUp() {
         switch (BROWSER) {
             case "Chrome" -> {
-                System.setProperty("webdriver.chrome.driver", "src/test/resources/chromedriver.exe");
+                System.setProperty("webdriver.chrome.driver", CHROMEDRIVER_PATH);
                 driver = new ChromeDriver();
             }
             case ("Edge") -> {
-                System.setProperty("webdriver.edge.driver", "src/test/resources/msedgedriver.exe");
+                System.setProperty("webdriver.edge.driver", EDGEDRIVER_PATH);
                 driver = new EdgeDriver();
             }
             default -> Assert.fail("Incorrect browser name");

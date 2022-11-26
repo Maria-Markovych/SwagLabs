@@ -19,7 +19,7 @@ public class ProductsPage extends BasePage {
     @FindBy(xpath = "//div[@class = 'inventory_item_name']")
     List<WebElement> productsName;
     @FindBy(xpath = "//div[@class='pricebar']/button")
-    List<WebElement> btnAddOrRemoveToCart;
+    List<WebElement> buttonAddOrRemoveToCart;
     @FindBy(className = "shopping_cart_link")
     WebElement shoppingCart;
     @FindBy(className = "shopping_cart_badge")
@@ -35,7 +35,7 @@ public class ProductsPage extends BasePage {
         select.selectByVisibleText(optionText);
     }
 
-    public List<String> turnProductsNameToString() {
+    public List<String> getProductNames() {
         List<String> products = new ArrayList<>();
         for (int i = 0; i < productsName.size(); i++) {
             products.add(i, productsName.get(i).getText());
@@ -43,7 +43,7 @@ public class ProductsPage extends BasePage {
         return products;
     }
 
-    public List<Double> turnProductsPriceToDouble() {
+    public List<Double> getProductPrices() {
         List<Double> prices = new ArrayList<>();
         for (int i = 0; i < productsPrice.size(); i++) {
             prices.add(i, Double.parseDouble(productsPrice.get(i).getText().split("\\$")[1]));
@@ -52,43 +52,43 @@ public class ProductsPage extends BasePage {
     }
 
     public List<String> productsByNameSorting() {
-        List<String> productsNameSorting = new ArrayList<>(turnProductsNameToString());
+        List<String> productsNameSorting = new ArrayList<>(getProductNames());
         Collections.sort(productsNameSorting);
         return productsNameSorting;
     }
 
     public List<Double> productsByPriceSorting() {
-        List<Double> productsPriceSorting = new ArrayList<>(turnProductsPriceToDouble());
+        List<Double> productsPriceSorting = new ArrayList<>(getProductPrices());
         Collections.sort(productsPriceSorting);
         return productsPriceSorting;
     }
 
-    public void checkSortingProductsByNameReverse() {
+    public void checkProductsByNamesDesc() {
         List<String> productsByNameSortingReverse = new ArrayList<>(productsByNameSorting());
         Collections.reverse(productsByNameSortingReverse);
-        boolean equals = productsByNameSortingReverse.equals(turnProductsNameToString());
+        boolean equals = productsByNameSortingReverse.equals(getProductNames());
         assertTrue(equals, "No products sorted by name");
     }
 
-    public void checkSortingProductsByName() {
-        boolean equals = productsByNameSorting().equals(turnProductsNameToString());
+    public void checkProductsByNamesAsc() {
+        boolean equals = productsByNameSorting().equals(getProductNames());
         assertTrue(equals, "No products sorted by name");
     }
 
-    public void checkSortingProductsByPrice() {
-        boolean equals = productsByPriceSorting().equals(turnProductsPriceToDouble());
+    public void checkProductsByPricesAsc() {
+        boolean equals = productsByPriceSorting().equals(getProductPrices());
         assertTrue(equals, "No products sorted by price");
     }
 
-    public void checkSortingProductsByPriceReverse() {
+    public void checkProductsByPricesDesc() {
         List<Double> productsByPriceSortingReverse = new ArrayList<>(productsByPriceSorting());
         Collections.reverse(productsByPriceSortingReverse);
-        boolean equals = productsByPriceSortingReverse.equals(turnProductsPriceToDouble());
+        boolean equals = productsByPriceSortingReverse.equals(getProductPrices());
         assertTrue(equals, "No products sorted by price");
     }
 
     public void clickButtonAddToCart(String idButtonAddToCart) {
-        for (WebElement buttonAddCart : btnAddOrRemoveToCart) {
+        for (WebElement buttonAddCart : buttonAddOrRemoveToCart) {
             if (buttonAddCart.getAttribute("id").equals(idButtonAddToCart)) {
                 buttonAddCart.click();
                 assertFalse(buttonAddCart.getAttribute("id").equals(idButtonAddToCart),
@@ -100,7 +100,7 @@ public class ProductsPage extends BasePage {
 
     public void clickButtonRemove(String idButtonRemove) {
         boolean idButtonRemoveExist = false;
-        for (WebElement buttonRemove : btnAddOrRemoveToCart) {
+        for (WebElement buttonRemove : buttonAddOrRemoveToCart) {
             if (buttonRemove.getAttribute("id").equals(idButtonRemove)) {
                 buttonRemove.click();
                 idButtonRemoveExist = true;

@@ -8,14 +8,14 @@ public class ProductsResultSteps {
     ShoppingCartPage shoppingCartPage = new ShoppingCartPage();
 
     public ProductsResultSteps verifySelectingProducts(String methodOfSorting) {
-        if (methodOfSorting.equals("SortingByName"))
-            productsPage.checkSortingProductsByName();
-        if (methodOfSorting.equals("SortingByNameReverse"))
-            productsPage.checkSortingProductsByNameReverse();
-        if (methodOfSorting.equals("SortingByPrice"))
-            productsPage.checkSortingProductsByPrice();
-        if (methodOfSorting.equals("SortingByPriceReverse"))
-            productsPage.checkSortingProductsByPriceReverse();
+        if (methodOfSorting.equals("SortingByNameAsc"))
+            productsPage.checkProductsByNamesAsc();
+        if (methodOfSorting.equals("SortingByNameDesc"))
+            productsPage.checkProductsByNamesDesc();
+        if (methodOfSorting.equals("SortingByPriceAsc"))
+            productsPage.checkProductsByPricesAsc();
+        if (methodOfSorting.equals("SortingByPriceDesc"))
+            productsPage.checkProductsByPricesDesc();
         return this;
     }
 
