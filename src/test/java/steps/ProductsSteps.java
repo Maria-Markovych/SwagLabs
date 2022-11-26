@@ -4,16 +4,24 @@ import pages.ProductsPage;
 
 public class ProductsSteps {
     ProductsPage productsPage = new ProductsPage();
-    public ProductsResultSteps doSelectedOption( String optionText){
+
+    public ProductsResultSteps doSelectedOption(String optionText) {
         productsPage.chooseTheSelectedOption(optionText);
         return new ProductsResultSteps();
     }
-    public ProductsResultSteps doAddProduct(String idButtonAddProduct){
-        productsPage.clickButtonAddToCart(idButtonAddProduct);
+
+    public ProductsResultSteps addProductsToCart(String idButtonAddToCart) {
+        productsPage.clickButtonAddToCart(idButtonAddToCart);
         return new ProductsResultSteps();
     }
-    public ProductsResultSteps doRemoveProduct(String idButtonRemove){
+
+    public ProductsResultSteps removeProductsFromCart(String idButtonRemove) {
         productsPage.clickButtonRemove(idButtonRemove);
+        return new ProductsResultSteps();
+    }
+
+    public ProductsResultSteps openShoppingCart() {
+        productsPage.clickShoppingCart();
         return new ProductsResultSteps();
     }
 }

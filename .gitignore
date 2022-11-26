@@ -1,2 +1,14 @@
+**/target/
 /target/
-/src/test/resources/
+*/target/*
+.classpath
+.project
+.settings
+
+# Package Files #
+*.jar
+*.war
+*.ear
+
+*.iml
+*.idea

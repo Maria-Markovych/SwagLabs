@@ -15,21 +15,21 @@ public class LoginPage extends BasePage {
     @FindBy(xpath = "//div[@class='error-message-container error']/h3")
     WebElement notification;
 
-    public void fillUseField(String username){
+    public void fillUseField(String username) {
         userField.clear();
         userField.sendKeys(username);
     }
 
-    public void fillPasswordField(String password){
+    public void fillPasswordField(String password) {
         passwordField.clear();
         passwordField.sendKeys(password);
     }
 
-    public void clickLoginButton(){
+    public void clickLoginButton() {
         loginBtn.click();
     }
 
-    public void checkNotificationForInvalidData(String message){
-        assertEquals(notification.getText(),message,"Invalid message");
+    public void checkNotificationForInvalidData(String message) {
+        assertEquals(notification.getText(), message, "Invalid message");
     }
 }

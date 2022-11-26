@@ -11,14 +11,15 @@ import java.time.Duration;
 
 import static tests.Config.EXPLICIT_WAIT;
 
-public abstract class  BasePage {
+public abstract class BasePage {
     protected WebDriver driver;
-    public BasePage(){
+
+    public BasePage() {
         driver = BaseTest.getDriver();
         PageFactory.initElements(driver, this);
     }
 
-    public WebElement waitElementIsVisible(WebElement element){
+    public WebElement waitElementIsVisible(WebElement element) {
         new WebDriverWait(driver, Duration.ofSeconds(EXPLICIT_WAIT)).until(ExpectedConditions.visibilityOf(element));
         return element;
     }
