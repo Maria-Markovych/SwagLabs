@@ -11,7 +11,7 @@ public class LoginPage extends BasePage {
     @FindBy(id = "password")
     WebElement passwordField;
     @FindBy(id = "login-button")
-    WebElement loginBtn;
+    WebElement loginButton;
     @FindBy(xpath = "//div[@class='error-message-container error']/h3")
     WebElement notification;
 
@@ -26,7 +26,7 @@ public class LoginPage extends BasePage {
     }
 
     public void clickLoginButton() {
-        loginBtn.click();
+        loginButton.click();
     }
 
     public void checkNotificationForInvalidData(String message) {

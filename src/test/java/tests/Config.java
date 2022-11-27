@@ -12,8 +12,8 @@ public class Config {
     public static final int EXPLICIT_WAIT = 10;
     public static final String BASE_PATH = "https://www.saucedemo.com/";
     public static String USERNAME = "standard_user";
-    public static final String CHROMEDRIVER_PATH = "src/test/resources/chromedriver.exe";
-    public static final String EDGEDRIVER_PATH = "src/test/resources/msedgedriver.exe";
+    public static String CHROMEDRIVER_PATH = "src/test/resources/chromedriver.exe";
+    public static String EDGEDRIVER_PATH = "src/test/resources/msedgedriver.exe";
 
     public static void configFromFileConfig() {
         try {
@@ -24,6 +24,10 @@ public class Config {
                     BROWSER = ini.get("configuration", "BROWSER");
                 if (ini.get("configuration", "Username") != null)
                     USERNAME = ini.get("configuration", "USERNAME");
+                if (ini.get("configuration", "CHROMEDRIVER_PATH") != null)
+                    CHROMEDRIVER_PATH = ini.get("configuration", "CHROMEDRIVER_PATH");
+                if (ini.get("configuration", "EDGEDRIVER_PATH") != null)
+                    CHROMEDRIVER_PATH = ini.get("configuration", "EDGEDRIVER_PATH");
             }
         } catch (IOException e) {
             System.out.println(e.getMessage());
