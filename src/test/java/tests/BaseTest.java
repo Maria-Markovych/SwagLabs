@@ -9,6 +9,7 @@ import org.testng.annotations.BeforeClass;
 import steps.LoginSteps;
 import steps.ProductsSteps;
 
+import java.io.IOException;
 import java.time.Duration;
 
 import static tests.Config.*;
@@ -20,6 +21,7 @@ public abstract class BaseTest {
 
     @BeforeClass
     public void setUp() {
+        Config.configFromFileConfig();
         switch (BROWSER) {
             case "Chrome" -> {
                 System.setProperty("webdriver.chrome.driver", CHROMEDRIVER_PATH);
