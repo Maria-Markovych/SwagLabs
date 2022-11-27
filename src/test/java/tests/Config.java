@@ -20,9 +20,9 @@ public class Config {
             File file = new File("Config.ini");
             Ini ini = new Ini(file);
             if (file.exists()) {
-                if (ini.get("configuration", "Browser") != null)
+                if (ini.get("configuration", "BROWSER") != null)
                     BROWSER = ini.get("configuration", "BROWSER");
-                if (ini.get("configuration", "Username") != null)
+                if (ini.get("configuration", "USERNAME") != null)
                     USERNAME = ini.get("configuration", "USERNAME");
                 if (ini.get("configuration", "CHROMEDRIVER_PATH") != null)
                     CHROMEDRIVER_PATH = ini.get("configuration", "CHROMEDRIVER_PATH");
